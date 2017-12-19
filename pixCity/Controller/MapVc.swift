@@ -53,6 +53,9 @@ class MapVc: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, UIG
     
 //---Selectors
     @objc func dropPin(sender: UITapGestureRecognizer) {
+        let tapPoint = sender.location(in: mapView)
+        let tapCoordinate = mapView.convert(tapPoint, toCoordinateFrom: mapView)
+        
         
     }
     
