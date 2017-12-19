@@ -96,6 +96,13 @@ class MapVc: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, UIG
         let annotationRadius = MKCoordinateRegionMakeWithDistance(tapCoordinate, locationCoordinateRadius * 2.0, locationCoordinateRadius * 2.0)
         mapView.addAnnotation(annotation)
         mapView.setRegion(annotationRadius, animated: true)
+        
+       print(FlickrAURL(annotation: annotation, ApiKEy: API_KEY, NumberoFPhotos: 40))
+        ImageService.instance.getImageURLS(annotation: annotation) { (complete) in
+            if complete {
+                ///get imgages
+            }
+        }
     }
     @objc func SlideDown(_ Recon: UITapGestureRecognizer) {
         pullUpViewHeight.constant = 0
