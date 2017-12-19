@@ -27,6 +27,7 @@ class MapVc: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, UIG
         mapView.delegate = self
         locationManager.delegate = self
         AuthorizeLocationService()
+        addDoubleTap()
 
     }//end view did load
 
@@ -53,13 +54,31 @@ class MapVc: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, UIG
     
 //---Selectors
     @objc func dropPin(sender: UITapGestureRecognizer) {
+        removeDuplicatePin()
         let tapPoint = sender.location(in: mapView)
         let tapCoordinate = mapView.convert(tapPoint, toCoordinateFrom: mapView)
-        
-        
+        let annotation = DroppablePin(coordianate: tapCoordinate, identifier: "droppablePin")
+        let annotationRadius = MKCoordinateRegionMakeWithDistance(tapCoordinate, locationCoordinateRadius * 2.0, locationCoordinateRadius * 2.0)
+        mapView.addAnnotation(annotation)
+        mapView.setRegion(annotationRadius, animated: true)
     }
     
 //---View update Function
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        if annotation is MKUserLocation {
+            return nil
+        }else {
+            let pinAnnotation = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "droppablePin")
+            pinAnnotation.tintColor = #colorLiteral(red: 0.5098039216, green: 0.6117647059, blue: 1, alpha: 1)
+            pinAnnotation.animatesDrop = true
+            return pinAnnotation
+        }
+    }
+    func removeDuplicatePin() {
+        for annotation in mapView.annotations {
+            mapView.removeAnnotation(annotation)
+        }
+    }
     func UpdateUserLocation() {
         guard let userCoordinate = locationManager.location?.coordinate else {return}
         let userCoordinateRadius = MKCoordinateRegionMakeWithDistance(userCoordinate, locationCoordinateRadius * 2.0, locationCoordinateRadius * 2.0)
