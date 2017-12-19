@@ -10,15 +10,22 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class MapVc: UIViewController {
+class MapVc: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     
 //---Outlets
     @IBOutlet weak var mapView: MKMapView!
     
+    
 //--Variables and Arrays
+    let locationManager = CLLocationManager()
+    let locationAuthStatus = CLLocationManager.authorizationStatus()
+    let locationCoordinateRadius: Double = 1000
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        mapView.delegate = self
+        locationManager.delegate = self
 
     }//end view did load
 
@@ -26,6 +33,8 @@ class MapVc: UIViewController {
     
     
 //---Actions
+    @IBAction func centerLocationPressed(_ sender: Any) {
+    }
     
 //---Gestures and Animations
     
