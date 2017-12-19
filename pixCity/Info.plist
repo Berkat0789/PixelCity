@@ -34,12 +34,11 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>UISupportedInterfaceOrientations~ipad</key>
-	<array>
-		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationPortraitUpsideDown</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
-	</array>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>In order to view  Images Pix City need your location </string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>In order to view  Images Pix City need your location </string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>In order to view  Images Pix City need your location </string>
 </dict>
 </plist>

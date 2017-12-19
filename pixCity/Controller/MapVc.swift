@@ -10,7 +10,7 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class MapVc: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
+class MapVc: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, UIGestureRecognizerDelegate{
     
 //---Outlets
     @IBOutlet weak var mapView: MKMapView!
@@ -26,6 +26,7 @@ class MapVc: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
         
         mapView.delegate = self
         locationManager.delegate = self
+        AuthorizeLocationService()
 
     }//end view did load
 
@@ -34,12 +35,42 @@ class MapVc: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     
 //---Actions
     @IBAction func centerLocationPressed(_ sender: Any) {
+        if locationAuthStatus == .authorizedAlways || locationAuthStatus == .authorizedWhenInUse {
+            UpdateUserLocation()
+        } else {
+            locationManager.requestAlwaysAuthorization()
+        }
     }
     
 //---Gestures and Animations
     
+    func addDoubleTap() {
+        let doubleTap = UITapGestureRecognizer(target: self, action: #selector(dropPin(sender:)))
+        doubleTap.delegate = self
+        doubleTap.numberOfTapsRequired = 2
+        self.mapView.addGestureRecognizer(doubleTap)
+    }
+    
 //---Selectors
+    @objc func dropPin(sender: UITapGestureRecognizer) {
+        
+    }
     
 //---View update Function
+    func UpdateUserLocation() {
+        guard let userCoordinate = locationManager.location?.coordinate else {return}
+        let userCoordinateRadius = MKCoordinateRegionMakeWithDistance(userCoordinate, locationCoordinateRadius * 2.0, locationCoordinateRadius * 2.0)
+        mapView.setRegion(userCoordinateRadius, animated: true)
+    }
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        UpdateUserLocation()
+    }
+    func AuthorizeLocationService() {
+        if locationAuthStatus == .notDetermined {
+            locationManager.requestAlwaysAuthorization()
+        } else {
+            return
+        }
+    }
    
 }//end controller

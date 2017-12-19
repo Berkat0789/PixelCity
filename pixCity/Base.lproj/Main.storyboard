@@ -40,7 +40,7 @@
                                     <constraint firstItem="5Zf-tx-Cd4" firstAttribute="centerX" secondItem="Xtu-kM-m97" secondAttribute="centerX" id="ezn-VM-9WU"/>
                                 </constraints>
                             </view>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="9QU-b2-VwO">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" rotateEnabled="NO" pitchEnabled="NO" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9QU-b2-VwO">
                                 <rect key="frame" x="0.0" y="70" width="375" height="595"/>
                             </mapView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x7e-ha-cDk">
