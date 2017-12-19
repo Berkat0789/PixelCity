@@ -8,20 +8,20 @@
 
 /* Begin PBXBuildFile section */
 		B41CB55E1FE990B6000DA077 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41CB55D1FE990B6000DA077 /* AppDelegate.swift */; };
-		B41CB5601FE990B6000DA077 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41CB55F1FE990B6000DA077 /* ViewController.swift */; };
 		B41CB5631FE990B6000DA077 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B41CB5611FE990B6000DA077 /* Main.storyboard */; };
 		B41CB5651FE990B6000DA077 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B41CB5641FE990B6000DA077 /* Assets.xcassets */; };
 		B41CB5681FE990B6000DA077 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B41CB5661FE990B6000DA077 /* LaunchScreen.storyboard */; };
+		B41CB5751FE9923F000DA077 /* MapVc.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41CB5741FE9923F000DA077 /* MapVc.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		B41CB55A1FE990B6000DA077 /* pixCity.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pixCity.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B41CB55D1FE990B6000DA077 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		B41CB55F1FE990B6000DA077 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		B41CB5621FE990B6000DA077 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B41CB5641FE990B6000DA077 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B41CB5671FE990B6000DA077 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B41CB5691FE990B6000DA077 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B41CB5741FE9923F000DA077 /* MapVc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapVc.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,14 +54,54 @@
 		B41CB55C1FE990B6000DA077 /* pixCity */ = {
 			isa = PBXGroup;
 			children = (
+				B41CB5731FE9922C000DA077 /* Services */,
+				B41CB5721FE99223000DA077 /* Utilities */,
+				B41CB5711FE9921B000DA077 /* Model */,
+				B41CB5701FE99215000DA077 /* View */,
+				B41CB56F1FE9920C000DA077 /* Controller */,
 				B41CB55D1FE990B6000DA077 /* AppDelegate.swift */,
-				B41CB55F1FE990B6000DA077 /* ViewController.swift */,
 				B41CB5611FE990B6000DA077 /* Main.storyboard */,
 				B41CB5641FE990B6000DA077 /* Assets.xcassets */,
 				B41CB5661FE990B6000DA077 /* LaunchScreen.storyboard */,
 				B41CB5691FE990B6000DA077 /* Info.plist */,
 			);
 			path = pixCity;
+			sourceTree = "<group>";
+		};
+		B41CB56F1FE9920C000DA077 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				B41CB5741FE9923F000DA077 /* MapVc.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		B41CB5701FE99215000DA077 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		B41CB5711FE9921B000DA077 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		B41CB5721FE99223000DA077 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		B41CB5731FE9922C000DA077 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -136,8 +176,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B41CB5601FE990B6000DA077 /* ViewController.swift in Sources */,
 				B41CB55E1FE990B6000DA077 /* AppDelegate.swift in Sources */,
+				B41CB5751FE9923F000DA077 /* MapVc.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
