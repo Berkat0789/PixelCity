@@ -14,9 +14,10 @@ class MapVc: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, UIG
     
 //---Outlets
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var pullUpView: UIView!
+    @IBOutlet weak var pullUpViewHeight: NSLayoutConstraint!
     
-    
-//--Variables and Arrays
+    //--Variables and Arrays
     let locationManager = CLLocationManager()
     let locationAuthStatus = CLLocationManager.authorizationStatus()
     let locationCoordinateRadius: Double = 1000
@@ -44,6 +45,12 @@ class MapVc: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, UIG
     }
     
 //---Gestures and Animations
+    func SlideUpView() {
+        pullUpViewHeight.constant = 300
+        UIView.animate(withDuration: 0.3) {
+            self.view.layoutIfNeeded()
+        }
+    }
     
     func addDoubleTap() {
         let doubleTap = UITapGestureRecognizer(target: self, action: #selector(dropPin(sender:)))
@@ -55,6 +62,7 @@ class MapVc: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, UIG
 //---Selectors
     @objc func dropPin(sender: UITapGestureRecognizer) {
         removeDuplicatePin()
+        SlideUpView()
         let tapPoint = sender.location(in: mapView)
         let tapCoordinate = mapView.convert(tapPoint, toCoordinateFrom: mapView)
         let annotation = DroppablePin(coordianate: tapCoordinate, identifier: "droppablePin")
