@@ -43,13 +43,16 @@ class MapVc: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, UIG
         return 1
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 40
+        return ImageService.instance.images.count
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 60, height: 60)
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "photoCell", for: indexPath) as? photoCell {
+            let imageIndex = ImageService.instance.images[indexPath.row]
+            let image = UIImageView(image: imageIndex)
+            cell.addSubview(image)
             return cell
         } else {
         return UICollectionViewCell()
@@ -76,6 +79,9 @@ class MapVc: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, UIG
         UIView.animate(withDuration: 0.3) {
             self.view.layoutIfNeeded()
         }
+        spinner.startAnimating()
+        spinner.isHidden = false
+        progressLabel.isHidden = false
     }
     
     func addDoubleTap() {
@@ -100,7 +106,16 @@ class MapVc: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, UIG
        print(FlickrAURL(annotation: annotation, ApiKEy: API_KEY, NumberoFPhotos: 40))
         ImageService.instance.getImageURLS(annotation: annotation) { (complete) in
             if complete {
-                ///get imgages
+                ImageService.instance.getImages(completed: { (done) in
+                    if done {
+                        self.collectionView.reloadData()
+                        self.spinner.stopAnimating()
+                        self.spinner.isHidden = true
+                        self.progressLabel.isHidden = true
+                        self.progressLabel.text = "\(ImageService.instance.images.count)/40 images Loaded"
+
+                    }
+                })
             }
         }
     }
@@ -109,6 +124,8 @@ class MapVc: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, UIG
         UIView.animate(withDuration: 0.5) {
             self.view.layoutIfNeeded()
         }
+        spinner.stopAnimating()
+        spinner.isHidden = true
     }
     
 //---View update Function
