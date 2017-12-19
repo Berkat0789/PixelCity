@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		72AD74F060222192E11273A8 /* Pods_pixCity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C572FFE3CE24C4019C81B8C /* Pods_pixCity.framework */; };
 		B41CB55E1FE990B6000DA077 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41CB55D1FE990B6000DA077 /* AppDelegate.swift */; };
 		B41CB5631FE990B6000DA077 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B41CB5611FE990B6000DA077 /* Main.storyboard */; };
 		B41CB5651FE990B6000DA077 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B41CB5641FE990B6000DA077 /* Assets.xcassets */; };
@@ -15,6 +16,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0C572FFE3CE24C4019C81B8C /* Pods_pixCity.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_pixCity.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		14F3D78FC896E65FD4A94F67 /* Pods-pixCity.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pixCity.release.xcconfig"; path = "Pods/Target Support Files/Pods-pixCity/Pods-pixCity.release.xcconfig"; sourceTree = "<group>"; };
+		64F540016750CE941C1181E4 /* Pods-pixCity.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pixCity.debug.xcconfig"; path = "Pods/Target Support Files/Pods-pixCity/Pods-pixCity.debug.xcconfig"; sourceTree = "<group>"; };
 		B41CB55A1FE990B6000DA077 /* pixCity.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pixCity.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B41CB55D1FE990B6000DA077 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B41CB5621FE990B6000DA077 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -29,17 +33,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				72AD74F060222192E11273A8 /* Pods_pixCity.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3D1EC9F8737DB29309787B0C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				64F540016750CE941C1181E4 /* Pods-pixCity.debug.xcconfig */,
+				14F3D78FC896E65FD4A94F67 /* Pods-pixCity.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		B41CB5511FE990B6000DA077 = {
 			isa = PBXGroup;
 			children = (
 				B41CB55C1FE990B6000DA077 /* pixCity */,
 				B41CB55B1FE990B6000DA077 /* Products */,
+				3D1EC9F8737DB29309787B0C /* Pods */,
+				EC9C9C91452569FA35A83E17 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -104,6 +120,14 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
+		EC9C9C91452569FA35A83E17 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0C572FFE3CE24C4019C81B8C /* Pods_pixCity.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -111,9 +135,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B41CB56C1FE990B6000DA077 /* Build configuration list for PBXNativeTarget "pixCity" */;
 			buildPhases = (
+				0400C3BA893554E12D807338 /* [CP] Check Pods Manifest.lock */,
 				B41CB5561FE990B6000DA077 /* Sources */,
 				B41CB5571FE990B6000DA077 /* Frameworks */,
 				B41CB5581FE990B6000DA077 /* Resources */,
+				34477968E202CA2F7D6FBECD /* [CP] Embed Pods Frameworks */,
+				60CEF35C4767589A12BD1E3D /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -170,6 +197,62 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0400C3BA893554E12D807338 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-pixCity-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		34477968E202CA2F7D6FBECD /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-pixCity/Pods-pixCity-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-pixCity/Pods-pixCity-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		60CEF35C4767589A12BD1E3D /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-pixCity/Pods-pixCity-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		B41CB5561FE990B6000DA077 /* Sources */ = {
@@ -312,6 +395,7 @@
 		};
 		B41CB56D1FE990B6000DA077 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 64F540016750CE941C1181E4 /* Pods-pixCity.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -327,6 +411,7 @@
 		};
 		B41CB56E1FE990B6000DA077 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 14F3D78FC896E65FD4A94F67 /* Pods-pixCity.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

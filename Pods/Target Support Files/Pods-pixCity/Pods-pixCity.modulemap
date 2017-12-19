@@ -1,0 +1,6 @@
+framework module Pods_pixCity {
+  umbrella header "Pods-pixCity-umbrella.h"
+
+  export *
+  module * { export * }
+}
