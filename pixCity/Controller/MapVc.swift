@@ -10,12 +10,15 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class MapVc: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, UIGestureRecognizerDelegate{
+class MapVc: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, UIGestureRecognizerDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDelegate, UICollectionViewDataSource{
     
 //---Outlets
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var pullUpView: UIView!
     @IBOutlet weak var pullUpViewHeight: NSLayoutConstraint!
+    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
+    @IBOutlet weak var progressLabel: UILabel!
     
     //--Variables and Arrays
     let locationManager = CLLocationManager()
@@ -24,15 +27,34 @@ class MapVc: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, UIG
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        collectionView.delegate = self
+        collectionView.dataSource = self
         mapView.delegate = self
         locationManager.delegate = self
         AuthorizeLocationService()
         addDoubleTap()
+        spinner.isHidden = true
+        progressLabel.isHidden = true
 
     }//end view did load
 
 //--Protocol Related Functions
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 40
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 60, height: 60)
+    }
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "photoCell", for: indexPath) as? photoCell {
+            return cell
+        } else {
+        return UICollectionViewCell()
+        }
+    }
     
     
 //---Actions
@@ -45,6 +67,10 @@ class MapVc: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, UIG
     }
     
 //---Gestures and Animations
+    func SlideDownView() {
+        let taptoSlide = UITapGestureRecognizer(target: self, action: #selector(SlideDown(_:)))
+        self.mapView.addGestureRecognizer(taptoSlide)
+    }
     func SlideUpView() {
         pullUpViewHeight.constant = 300
         UIView.animate(withDuration: 0.3) {
@@ -63,12 +89,19 @@ class MapVc: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, UIG
     @objc func dropPin(sender: UITapGestureRecognizer) {
         removeDuplicatePin()
         SlideUpView()
+        SlideDownView()
         let tapPoint = sender.location(in: mapView)
         let tapCoordinate = mapView.convert(tapPoint, toCoordinateFrom: mapView)
         let annotation = DroppablePin(coordianate: tapCoordinate, identifier: "droppablePin")
         let annotationRadius = MKCoordinateRegionMakeWithDistance(tapCoordinate, locationCoordinateRadius * 2.0, locationCoordinateRadius * 2.0)
         mapView.addAnnotation(annotation)
         mapView.setRegion(annotationRadius, animated: true)
+    }
+    @objc func SlideDown(_ Recon: UITapGestureRecognizer) {
+        pullUpViewHeight.constant = 0
+        UIView.animate(withDuration: 0.5) {
+            self.view.layoutIfNeeded()
+        }
     }
     
 //---View update Function
