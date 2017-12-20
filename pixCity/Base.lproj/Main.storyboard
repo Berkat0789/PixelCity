@@ -132,8 +132,51 @@
             </objects>
             <point key="canvasLocation" x="136.80000000000001" y="98.50074962518741"/>
         </scene>
+        <!--PopVC-->
+        <scene sceneID="J2r-OK-Su4">
+            <objects>
+                <viewController storyboardIdentifier="popVC" id="P8V-xI-Xwb" customClass="PopVC" customModule="pixCity" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="BSn-Cc-PeO">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3b2-9l-Wt7">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oSV-Rh-HcT">
+                                <rect key="frame" x="41" y="570" width="292" height="77"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="77" id="iGm-A8-O7M"/>
+                                </constraints>
+                                <state key="normal" image="book-btn"/>
+                                <connections>
+                                    <action selector="dismissPressed:" destination="P8V-xI-Xwb" eventType="touchUpInside" id="rXj-P4-Yu5"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="3b2-9l-Wt7" firstAttribute="leading" secondItem="hL6-v8-VnD" secondAttribute="leading" id="CvC-br-ltA"/>
+                            <constraint firstItem="hL6-v8-VnD" firstAttribute="bottom" secondItem="oSV-Rh-HcT" secondAttribute="bottom" constant="20" id="H1N-qH-1Yr"/>
+                            <constraint firstItem="3b2-9l-Wt7" firstAttribute="top" secondItem="BSn-Cc-PeO" secondAttribute="top" id="SDv-fp-5Ar"/>
+                            <constraint firstItem="3b2-9l-Wt7" firstAttribute="bottom" secondItem="hL6-v8-VnD" secondAttribute="bottom" id="Z6k-J8-LZr"/>
+                            <constraint firstItem="hL6-v8-VnD" firstAttribute="trailing" secondItem="oSV-Rh-HcT" secondAttribute="trailing" constant="42" id="aO5-a0-8sQ"/>
+                            <constraint firstItem="oSV-Rh-HcT" firstAttribute="leading" secondItem="hL6-v8-VnD" secondAttribute="leading" constant="41" id="lVs-zv-u54"/>
+                            <constraint firstItem="3b2-9l-Wt7" firstAttribute="trailing" secondItem="hL6-v8-VnD" secondAttribute="trailing" id="s5q-RA-Tif"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="hL6-v8-VnD"/>
+                    </view>
+                    <connections>
+                        <outlet property="largeImage" destination="3b2-9l-Wt7" id="u8t-7U-NRi"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Obg-fD-Moo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="944.79999999999995" y="103.89805097451276"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="book-btn" width="414" height="110"/>
         <image name="centerLOcaiton" width="57" height="57"/>
     </resources>
 </document>

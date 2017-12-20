@@ -58,6 +58,12 @@ class MapVc: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, UIG
         return UICollectionViewCell()
         }
     }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let popVC = storyboard?.instantiateViewController(withIdentifier: "popVC") as? PopVC else {return}
+        let image = ImageService.instance.images[indexPath.row]
+        popVC.getImage(image: image)
+        present(popVC, animated: true, completion: nil)
+    }
     
     
 //---Actions
