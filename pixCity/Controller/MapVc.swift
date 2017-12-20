@@ -10,7 +10,7 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class MapVc: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, UIGestureRecognizerDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDelegate, UICollectionViewDataSource{
+class MapVc: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, UIGestureRecognizerDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDelegate, UICollectionViewDataSource, UIViewControllerPreviewingDelegate{
     
 //---Outlets
     @IBOutlet weak var mapView: MKMapView!
@@ -35,6 +35,7 @@ class MapVc: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, UIG
         addDoubleTap()
         spinner.isHidden = true
         progressLabel.isHidden = true
+        registerForPreviewing(with: self, sourceView: collectionView)
 
     }//end view did load
 
@@ -63,6 +64,20 @@ class MapVc: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, UIG
         let image = ImageService.instance.images[indexPath.row]
         popVC.getImage(image: image)
         present(popVC, animated: true, completion: nil)
+    }
+//--For 3d Touch
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
+        guard let indexPath = collectionView.indexPathForItem(at: location) else {return nil}
+        guard let cell = collectionView.cellForItem(at: indexPath) else {return nil}
+        
+        guard let popVC = storyboard?.instantiateViewController(withIdentifier: "popVC") as? PopVC else {return nil}
+        let image = ImageService.instance.images[indexPath.row]
+        popVC.getImage(image: image)
+        previewingContext.sourceRect = cell.contentView.frame
+        return popVC
+    }
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
+        show(viewControllerToCommit, sender: self)
     }
     
     
